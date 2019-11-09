@@ -1,6 +1,6 @@
 <template>
   <div>
-    Game Setup View
+    <md-button class="md-primary">I am a Material Vue button</md-button>
   </div>
 </template>
 

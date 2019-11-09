@@ -7,13 +7,19 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     playerSelected: {
-      player1: false,
-      player2: false,
-      player3: false,
-      player4: false
+      player1: "Miti",
+      player2: "Piti",
+      player3: "Diti",
+      player4: "Chiti"
+    },
+    cardsInHands: {
+      player1: [],
+      player2: [],
+      player3: [],
+      player4: []
     },
     playerActive: 1,
-    hand: ["", "", "", ""],
+    activeHand: ["", "", "", ""],
     score: [0, 0, 0, 0],
     deckSize: 52,
     clockwiseDirection: true,
@@ -37,6 +43,9 @@ const store = new Vuex.Store({
     },
     selectPlayer(state, payload) {
       state.playerSelected = payload.playerSelected;
+    },
+    setCardsInHands(state, payload) {
+      state.cardsInHands = payload.cardsInHands;
     }
   }
 });
