@@ -1,7 +1,7 @@
 # cards-games
-```
+
 Small project that allows 4 players to play a few types of card games. Whist, Bids or Rentz, haven't decided yet :D. I guess we start with Bids, see how it goes.
-```
+
 ## Project setup
 ```
 npm install
