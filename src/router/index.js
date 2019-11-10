@@ -13,7 +13,7 @@ const routes = [
     component: StartGameView
   },
   {
-    path: "/settings/:gameId",
+    path: "/settings/:userType?/:gameId?",
     name: "settings",
     component: GameSetupView
   },
