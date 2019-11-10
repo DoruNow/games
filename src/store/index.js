@@ -23,9 +23,13 @@ const store = new Vuex.Store({
     score: [0, 0, 0, 0],
     deckSize: 52,
     clockwiseDirection: true,
-    totalNumberOfPlayers: 4
+    totalNumberOfPlayers: 4,
+    gameId: ""
   },
   mutations: {
+    setGameId(state, payload) {
+      state.gameId = payload.gameId;
+    },
     setNextPlayer(state, payload) {
       state.playerActive = payload.playerActive;
     },
