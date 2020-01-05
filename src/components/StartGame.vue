@@ -4,11 +4,11 @@
       <v-row align="center" justify="center">
         <div class="d-flex flex-column">
           <v-btn class="ma-2" color="success" @click="startNewGame()" large
-            >Start New Game</v-btn
+            >Create New Game</v-btn
           >
-          <v-btn class="ma-2" color="success" @click="showPin = true" large>
-            Join
-          </v-btn>
+          <v-btn class="ma-2" color="success" @click="showPin = true" large
+            >Join</v-btn
+          >
           <div v-if="showPin">
             <v-text-field
               name="pin"
@@ -22,6 +22,22 @@
               @click="checkGame(gameId)"
               >Join Game</v-btn
             >
+            <v-btn color="success">Submit</v-btn>
+          </div>
+          <v-btn
+            class="ma-2"
+            color="success"
+            @click="showRoomIdField = true"
+            large
+            >Load Game</v-btn
+          >
+          <div v-if="showRoomIdField">
+            <v-text-field
+              name="roomId"
+              label="Please enter room id"
+              id="roomId"
+            ></v-text-field>
+            <v-btn color="success">Submit</v-btn>
           </div>
         </div>
       </v-row>
@@ -36,7 +52,8 @@ export default Vue.extend({
   data() {
     return {
       gameId: "",
-      showPin: false
+      showPin: false,
+      showRoomIdField: false
     };
   },
   methods: {
