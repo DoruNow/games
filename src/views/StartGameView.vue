@@ -9,8 +9,8 @@
 
 <script lang="ts">
 import Vue from "vue";
-import Header from "../components/Header";
-import StartGame from "../components/StartGame";
+import Header from "../components/Header.vue";
+import StartGame from "../components/StartGame.vue";
 
 export default Vue.extend({
   components: {

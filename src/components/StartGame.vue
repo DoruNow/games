@@ -1,60 +1,24 @@
 <template>
-  <v-container class="fill-height" fluid>
-    <v-layout text-center wrap>
-      <v-row align="center" justify="center">
-        <div class="d-flex flex-column">
-          <v-btn class="ma-2" color="success" @click="startNewGame()" large
-            >Create New Game</v-btn
-          >
-          <v-btn class="ma-2" color="success" @click="showPin = true" large
-            >Join</v-btn
-          >
-          <div v-if="showPin">
-            <v-text-field
-              name="pin"
-              label="Enter your pin please"
-              v-model="gameId"
-              type="password"
-            ></v-text-field>
-            <v-btn
-              v-if="gameId.length === 4"
-              color="success"
-              @click="checkGame(gameId)"
-              >Join Game</v-btn
-            >
-            <v-btn color="success">Submit</v-btn>
-          </div>
-          <v-btn
-            class="ma-2"
-            color="success"
-            @click="showRoomIdField = true"
-            large
-            >Load Game</v-btn
-          >
-          <div v-if="showRoomIdField">
-            <v-text-field
-              name="roomId"
-              label="Please enter room id"
-              id="roomId"
-            ></v-text-field>
-            <v-btn color="success">Submit</v-btn>
-          </div>
-        </div>
-      </v-row>
-    </v-layout>
-  </v-container>
+  <div class="start-game d-flex align-center justify-center flex-column">
+    <v-card color="#eef" class="ma-3">
+      <v-btn class="ma-2" color="success" @click="startNewGame()" large
+        >Create New Game</v-btn
+      >
+    </v-card>
+    <JoinGame />
+    <LoadGame />
+  </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
+import JoinGame from "../components/JoinGame.vue";
+import LoadGame from "../components/LoadGame.vue";
 
 export default Vue.extend({
-  data() {
-    return {
-      gameId: "",
-      showPin: false,
-      showRoomIdField: false
-    };
+  components: {
+    JoinGame,
+    LoadGame
   },
   methods: {
     startNewGame() {
@@ -63,7 +27,7 @@ export default Vue.extend({
       this.$router.push({
         path: "settings",
         // TODO move gameId to player 1 decision
-        query: { userType: "admin", gameId: "1010" }
+        query: { userType: "admin" }
       });
     },
     checkGame(gameId) {
@@ -86,4 +50,13 @@ export default Vue.extend({
 });
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.start-game {
+  height: 80vh;
+  &__menu-card {
+    width: 35vw;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+</style>

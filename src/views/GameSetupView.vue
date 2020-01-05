@@ -9,8 +9,8 @@
 
 <script lang="ts">
 import Vue from "vue";
-import Header from "../components/Header";
-import GlobalGameSettings from "../components/GlobalGameSettings";
+import Header from "../components/Header.vue";
+import GlobalGameSettings from "../components/GlobalGameSettings.vue";
 export default Vue.extend({
   components: {
     Header,
