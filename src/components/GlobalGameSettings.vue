@@ -56,8 +56,45 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { DealCards } from "../services/DealCards.js";
+
+const Deck = {
+  methods: {
+    setDeck(selectedRange) {
+      let skip;
+      switch (selectedRange) {
+        case "all":
+          skip = 0;
+          break;
+        case "sevenAndUp":
+          skip = 6;
+          break;
+
+        default:
+          0;
+          break;
+      }
+      return this.buildDeck(skip);
+    },
+    buildDeck(skip) {
+      const cardTypes = ["Spades", "Hearts", "Diamonds", "Clubs"];
+      let deck = [];
+      cardTypes.forEach(type => {
+        [...Array(14).keys()].forEach(element => {
+          // skipping 0 avoids confusion when mapping the cards
+          if (element === 0 || (skip > 0 && element <= skip)) {
+            return;
+          }
+          deck.push({ type, element });
+        });
+      });
+      return deck;
+    }
+  }
+};
 
 export default Vue.extend({
+  mixins: [Deck],
   data() {
     return {
       settingsForm: true,
@@ -78,9 +115,12 @@ export default Vue.extend({
   methods: {
     validate() {
       if (this.$refs.settingsForm.validate()) {
-        console.log("miti");
+        // push to generated URL's
       }
     }
+  },
+  mounted() {
+    console.log(DealCards(this.setDeck("all")));
   }
 });
 </script>
