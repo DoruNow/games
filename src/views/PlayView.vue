@@ -1,7 +1,7 @@
 <template>
-  <div>
-    Player View
-  </div>
+  <v-content>
+    <router-view></router-view>
+  </v-content>
 </template>
 
 <script lang="ts">

@@ -1,31 +1,42 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import GameSetupView from "../views/GameSetupView.vue";
-import PlayerView from "../views/PlayerView.vue";
 import StartGameView from "../views/StartGameView.vue";
+import PlayView from "../views/PlayView.vue";
+import DisplayLinks from "../components/DisplayLinks.vue";
+import Player from "../components/Player.vue";
+import Table from "../components/Table.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "home",
     component: StartGameView
   },
   {
-    path: "/settings/:userType?/:gameId?",
-    name: "settings",
-    component: GameSetupView
+    path: "/settings",
+    component: GameSetupView,
+    children: [
+      {
+        path: "link-setup/:playerName/:roomName/:playerSelection",
+        component: DisplayLinks
+      }
+    ]
   },
   {
-    path: "/player/:gameId/:id/:playerNo",
-    name: "player",
-    component: PlayerView
-  },
-  {
-    path: "/table/:gameId",
-    name: "table",
-    component: () => import("../views/PlayingTableView.vue")
+    path: "/play",
+    component: PlayView,
+    children: [
+      {
+        path: "/player/:playerName",
+        component: Player
+      },
+      {
+        path: "/room/:roomName",
+        component: Table
+      }
+    ]
   }
 ];
 
