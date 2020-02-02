@@ -3,7 +3,6 @@ import VueRouter from "vue-router";
 import GameSetupView from "../views/GameSetupView.vue";
 import StartGameView from "../views/StartGameView.vue";
 import PlayView from "../views/PlayView.vue";
-import GlobalGameSettings from "../components/GlobalGameSettings.vue";
 import DisplayLinks from "../components/DisplayLinks.vue";
 import Player from "../components/Player.vue";
 import Table from "../components/Table.vue";
@@ -20,11 +19,7 @@ const routes = [
     component: GameSetupView,
     children: [
       {
-        path: "/",
-        component: GlobalGameSettings
-      },
-      {
-        path: "link-setup",
+        path: "link-setup/:playerName/:roomName/:playerSelection",
         component: DisplayLinks
       }
     ]

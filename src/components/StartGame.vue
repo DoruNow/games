@@ -1,38 +1,26 @@
 <template>
   <div>
-    <MenuCard
-      :menuCardButtonText="'Start a new game'"
-      :callback="startNewGame"
+    <GetUserInformation
+      :displayWhich="displayWhich"
+      :storeMutations="mutations"
+      :menuCardButtonText="menuCardButtonText"
     />
-    <GetUserInformation :displayWhich="displayWhich" />
-    
-    {{ this.formInformation }}
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import MenuCard from "@/components/MenuCard.vue";
 import GetUserInformation from "@/components/GetUserInformation.vue";
-// import CreateLinksButton from "@/components/CreateLinksButton.vue";
 
 export default Vue.extend({
   components: {
-    MenuCard,
-    GetUserInformation,
-    // CreateLinksButton
+    GetUserInformation
   },
-  props: {
-    formInformation: {
-      type: Object
-    }
-  },
-  methods: {
-    startNewGame() {
-      this.$router.push({
-        path: "settings"
-      });
-    }
+  data() {
+    return {
+      menuCardButtonText: "Start a new game",
+      displayWhich: { playerName: true, roomName: true, selectPlayer: false }
+    };
   },
   computed: {
     mutations() {
@@ -48,9 +36,6 @@ export default Vue.extend({
           value: { playerName: this.playerName, playerNo: 1 }
         }
       ];
-    },
-    displayWhich() {
-      return { playerName: true, roomName: true };
     }
   }
 });

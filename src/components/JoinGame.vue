@@ -51,7 +51,6 @@ export default Vue.extend({
       gameId: "",
       playerSelection: [
         { text: "Player 2", value: 2 },
-        { text: "Player 2", value: 2 },
         { text: "Player 3", value: 3 },
         { text: "Player 4", value: 4 }
       ]

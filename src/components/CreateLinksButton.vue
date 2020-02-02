@@ -19,12 +19,14 @@ export default {
     redirectTo: {
       type: String
     },
-    enableButton: {
-      type: Boolean,
-      default: false
+    formInformation: {
+      type: Object
     }
   },
   methods: {
+    update() {
+      console.log("event");
+    },
     createLinks() {
       this.storeMutations.forEach(mutation => {
         console.log(mutation);

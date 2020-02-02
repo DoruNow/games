@@ -1,6 +1,6 @@
 <template>
   <div class="start-game d-flex align-center justify-center flex-column">
-    <StartGame :formInformation="value" />
+    <StartGame />
   </div>
 </template>
 
