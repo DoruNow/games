@@ -16,8 +16,8 @@
           v-model="playerName"
           name="playerName"
           label="Player Name"
-          id="playerNameId"
           type="text"
+          @keydown.space.prevent
           :rules="required"
         ></v-text-field>
         <v-text-field
@@ -25,19 +25,21 @@
           v-model="roomName"
           name="roomName"
           label="Room Name"
-          id="roomNameId"
           type="text"
+          @keydown.space.prevent
           :rules="required"
         ></v-text-field>
         <v-select
           v-if="displayWhich.selectPlayer"
+          v-model="select"
           :items="playerSelection"
           label="Select Player"
-          solo
+          item-value="value"
         ></v-select>
         <v-btn :disabled="!settingsForm" color="success" @click="createLinks"
           >Create Links</v-btn
         >
+        {{ select }}
       </v-form>
     </v-card>
   </div>
@@ -51,18 +53,9 @@ export default Vue.extend({
     displayWhich: {
       type: Object
     },
-    selectItems: {
-      type: Array
-    },
-    storeMutations: {
-      type: Array
-    },
     menuCardButtonText: {
       type: String,
       default: ""
-    },
-    callback: {
-      type: Function
     }
   },
   data() {
@@ -70,47 +63,40 @@ export default Vue.extend({
       showForm: false,
       settingsForm: null,
       playerName: "Doru",
-      roomName: "KingPin Cool kid",
+      roomName: "KingPin",
+      select: { value: null },
       playerSelection: [
         { text: "Player 2", value: 2 },
         { text: "Player 3", value: 3 },
         { text: "Player 4", value: 4 }
       ],
-      required: [v => !!v || "Required field"]
+      required: [v => !!v || "Required field"],
+      settings: {
+        roomName: String
+      }
     };
   },
   methods: {
     createLinks() {
-      this.storeMutations.forEach(mutation => {
-        console.log(mutation);
-        this.$store.commit({
-          type: mutation.type,
-          value: mutation.value
-        });
-        this.$router.push({
-          path: `/settings/link-setup/${this.playerName}/${this.roomName}/${this.playerSelection.value}`
-        });
+      this.updateStore();
+      this.$router.push({
+        path: `/settings/link-setup/${this.playerName}/${this.roomName}/${this.select}`
       });
     },
     updateStore() {
+      this.settings.roomName = this.roomName;
+      this.settings.playerName = this.playerName;
+      this.settings.playerNo = this.select;
+
       this.$store.commit({
-        type: "gameSettings",
-        value: this.gameSettings
+        type: "setGameSettings",
+        value: this.settings
       });
     }
   },
   mounted() {
     if (this.displayWhich.selectPlayer === false) {
-      this.playerSelection = { text: "Player 1", value: 1 };
-    }
-  },
-  computed: {
-    gameSettings() {
-      let playerNo = "player" + this.playerSelection.value;
-      return {
-        roomName: this.roomName,
-        playerNo: this.playerName
-      };
+      this.select = 1;
     }
   }
 });

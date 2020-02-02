@@ -2,7 +2,6 @@
   <div>
     <GetUserInformation
       :displayWhich="displayWhich"
-      :storeMutations="mutations"
       :menuCardButtonText="menuCardButtonText"
     />
   </div>
@@ -21,22 +20,6 @@ export default Vue.extend({
       menuCardButtonText: "Start a new game",
       displayWhich: { playerName: true, roomName: true, selectPlayer: false }
     };
-  },
-  computed: {
-    mutations() {
-      return [
-        {
-          type: "setRoomName",
-          value: {
-            roomName: this.roomName
-          }
-        },
-        {
-          type: "setPlayerName",
-          value: { playerName: this.playerName, playerNo: 1 }
-        }
-      ];
-    }
   }
 });
 </script>

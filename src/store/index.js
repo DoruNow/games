@@ -6,21 +6,7 @@ Vue.use(Vuex);
 /* eslint-disable no-new */
 const store = new Vuex.Store({
   state: {
-    gameSettings: {
-      roomName: "",
-      player1: {
-        name: ""
-      },
-      player2: {
-        name: ""
-      },
-      player3: {
-        name: ""
-      },
-      player4: {
-        name: ""
-      }
-    },
+    gameSettings: {},
     gameState: {
       activeHand: ["", "", "", ""],
       playerActive: null,
@@ -36,10 +22,12 @@ const store = new Vuex.Store({
   },
   mutations: {
     setGameState(state, payload) {
-      state.gameSettings = payload.value.gameSettings;
+      state.gameState = payload.value;
     },
     setGameSettings(state, payload) {
-      state.gameSettings = payload.value.gameSettings;
+      state.gameSettings.roomName = payload.value.roomName;
+      state.gameSettings["player" + payload.value.playerNo] =
+        payload.value.playerName;
     }
   }
 });
