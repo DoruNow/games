@@ -39,7 +39,6 @@
         <v-btn :disabled="!settingsForm" color="success" @click="createLinks"
           >Create Links</v-btn
         >
-        {{ select }}
       </v-form>
     </v-card>
   </div>
