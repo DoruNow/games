@@ -5,7 +5,7 @@
       <p class="title text--primary">Game Room Link:</p>
       <p class="subtitle-1 text--primary">
         {{
-          `http://192.168.5.122:8080/player/${this.$route.params.playerSelection}`
+          `http://192.168.5.122:8080/player/${this.$route.params.roomName}/${this.$route.params.playerSelection}`
         }}
       </p>
       <p class="title text--primary">Table link:</p>

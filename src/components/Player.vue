@@ -7,6 +7,14 @@
       @click="startGame"
       >Deal cards</v-btn
     >
+    <v-btn
+      large
+      color="primary-title"
+      v-if="displayStartGameButton"
+      @click="show1"
+      >Show player 1 cards</v-btn
+    >
+    <p v-if="this.cards">{{ cards[playerIndex] }}</p>
   </div>
 </template>
 
@@ -18,7 +26,9 @@ import { ShuffleDeck } from "../services/ShuffleDeck.ts";
 export default Vue.extend({
   data() {
     return {
-      displayStartGameButton: false
+      displayStartGameButton: false,
+      cards: null,
+      playerIndex: null
     };
   },
   mounted() {
@@ -29,7 +39,14 @@ export default Vue.extend({
   methods: {
     startGame() {
       const ShuffleDeckService = new ShuffleDeck();
-      ShuffleDeckService.shuffleDeck();
+      let payload = {
+        cardsInHands: ShuffleDeckService.shuffleDeck()
+      };
+      this.$store.commit({ type: "setGameState", value: payload });
+    },
+    show1() {
+      this.cards = this.$store.state.gameState.cardsInHands;
+      this.playerIndex = this.$route.params.playerNo;
     }
   }
 });
