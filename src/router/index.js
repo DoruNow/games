@@ -29,7 +29,7 @@ const routes = [
     component: PlayView,
     children: [
       {
-        path: "/player/:playerName",
+        path: "/player/:roomName/:playerNo",
         component: Player
       },
       {

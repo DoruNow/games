@@ -1,15 +1,14 @@
+// Built with flexibility in mind
+
 export class ShuffleDeck {
   // setDeck(selectedRange) {
   //   let skip;
   //   switch (selectedRange) {
-  //     case "all":
-  //       skip = 0;
-  //       break;
   //     case "sevenAndUp":
   //       skip = 6;
   //       break;
   //     default:
-  //       0;
+  //       skip = 0;
   //       break;
   //   }
   //   return this.buildDeck(skip);
@@ -19,12 +18,12 @@ export class ShuffleDeck {
     const cardTypes = ["Spades", "Hearts", "Diamonds", "Clubs"];
     let deck = [];
     cardTypes.forEach(type => {
-      [...Array(14).keys()].forEach(element => {
+      [...Array(14).keys()].forEach(value => {
         // skipping 0 avoids confusion when mapping the cards
-        if (element === 0 || (skip > 0 && element <= skip)) {
+        if (value === 0 || (skip > 0 && value <= skip)) {
           return;
         }
-        deck.push({ type, element });
+        deck.push({ type, value });
       });
     });
     return deck;
